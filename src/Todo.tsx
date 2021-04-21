@@ -1,13 +1,10 @@
 import React from 'react'
+import {TodoType} from './types/todo'
 
-type TodoType = {
-    userId: number;
-    title: string;
-    //?をつけることで必須ではないことを明示的にかける。completedは渡さなくても良いものという扱いになる
-    completed?: boolean;
-}
-
-export const Todo = (props: TodoType) => {
+//Pick<型指定したtype, "使う変数">でtypeで指定した変数の中から使うものだけを選べる
+// export const Todo = (props: Pick<TodoType, "userId" | "title" | "completed">) => {
+//omitは除外するやつ
+export const Todo = (props: Omit<TodoType, "id">) => {
     //もしpropsで値が渡ってこない場合の初期値をつけておくcompleted
     const {title, userId, completed = false} = props;
     const completeMark = completed? "[完]": "[未]";
